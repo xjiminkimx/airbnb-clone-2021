@@ -10,15 +10,11 @@ class Conversation(core_models.TimeStampedModel):
         "users.User", related_name="conversation", blank=True
     )
 
-
-"""
     def __str__(self):
         usernames = []
         for user in self.participants.all():
             usernames.append(user.username)
         return ", ".join(usernames)
-
-
 
     def count_messages(self):
         return self.messages.count()
@@ -29,7 +25,6 @@ class Conversation(core_models.TimeStampedModel):
         return self.participants.count()
 
     count_participants.short_description = "Number of Participants"
-"""
 
 
 class Message(core_models.TimeStampedModel):
