@@ -3,6 +3,7 @@ from django.db import models
 
 # Third Party Packages
 from django_countries.fields import CountryField
+from django.shortcuts import render, reverse
 
 # MyApps
 from core import models as core_models
@@ -90,6 +91,9 @@ class Room(core_models.TimeStampedModel):
     def save(self, *args, **kwargs):
         self.city = str.capitalize(self.city)
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
 
     def total_rating(self):
         all_reviews = self.reviews.all()
